@@ -48,7 +48,7 @@ async function run() {
             const email = req.query.email;
             const date = req.query.date;
 
-            const query = { email: email, date: date.toLocaleDateString() }
+            const query = { email: email, date: date }
             console.log(query);
 
             const cursor = appointmentsCollection.find(query);

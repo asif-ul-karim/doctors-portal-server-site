@@ -48,7 +48,8 @@ async function run() {
             const email = req.query.email;
             const date = req.query.date;
 
-            const query = { email: email, date: date }
+            const query = { email: email, date: date.toString() }
+            console.log(query);
 
             const cursor = appointmentsCollection.find(query);
             const appointments = await cursor.toArray();
@@ -88,6 +89,13 @@ async function run() {
             res.json(result);
         });
 
+        // app.put('/users/admin',async(req,res)=>{
+        //     const user = req.body;
+        //     const filter = {email : user.email}
+        //     const updateDoc = {$set: {role:'admin'}}
+        //     const result = await usersCollection.updateOne(filter,updateDoc)
+        //     res.json(result)
+        //   })
         app.put('/users/admin', verifyToken, async (req, res) => {
             const user = req.body;
             const requester = req.decodedEmail;
